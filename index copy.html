@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+	<title>Калькулятор</title>
+</head>
+<body>
+	<!-- поле ввода первого числа -->
+	<input id="num1" />
+
+	<!-- блок с кнопками -->
+
+
+<!-- блок с кнопками -->
+<!-- <div id="operator_btns">
+    <button id="plus" onclick="sel_ligth('plus')">+</button>
+    <button id="minus" onclick="sel_ligth('minus')">-</button>
+    <button id="times" onclick="sel_ligth('times')">x</button>
+    <button id="divide" onclick="sel_ligth('divide')">:</button>
+  </div>
+-->
+  
+  <!-- блок с кнопками -->
+<div id="operator_btns">
+    <button id="plus" onclick="sel_ligth('plus')">+</button>
+    <button id="minus" onclick="sel_ligth('minus')">-</button>
+    <button id="times" onclick="sel_ligth('times')">x</button>
+    <button id="divide" onclick="sel_ligth('divide')">:</button>
+  </div>
+
+
+	<!-- поле ввода второго числа -->
+	<input id="num2" />
+	<br>
+
+	<!-- кнопка для рассчётов -->
+	<button onclick="func()">Посчитать</button>
+    <p id="result"></p>
+
+    <script>
+        // переменная, в которой хранится выбранное математическое действие
+        var op; 
+      
+        // функция расчёта
+        function func() {
+            // переменная для результата
+          var result;
+          // получаем первое и второе число
+          var num1 = Number(document.getElementById("num1").value);
+          var num2 = Number(document.getElementById("num2").value);
+          // смотрим, что было в переменной с действием, и действуем исходя из этого
+          switch (op) {
+            case '+':
+              result = num1 + num2;
+              break;
+            case '-':
+              result = num1 - num2;
+              break;
+            case '*':
+              result = num1 * num2;
+              break;
+            case '/':
+              result = num1 / num2;
+              break;
+          }
+          document.getElementById("result").innerHTML = result;
+        }
+
+        // функция, которая подсветит выбранное математическое действие
+function sel_ligth(sel_id) {
+	// убираем класс подсветки со всех кнопок
+	document.getElementById("plus").classList.remove("light");
+	document.getElementById("minus").classList.remove("light");
+	document.getElementById("times").classList.remove("light");
+	document.getElementById("divide").classList.remove("light");
+
+	// и добавляем его только к нажатой
+	document.getElementById(sel_id).classList.add("light");
+
+	// в зависимости от нажатой клавиши меняем значение переменной op
+	switch (sel_id) {
+	  case "plus":
+	    op = "+"
+	    break;
+	  case 'minus':
+	    op = '-'
+	    break;
+	  case 'times':
+	    op = "*"
+	    break;
+	  case 'divide':
+	    op = "/"
+	    break;
+	}
+}
+// добавляем обработчик нажатия на клавиши ко второму полю ввода
+document.getElementById("num2").addEventListener('keydown', function(e) {
+	if (e.keyCode === 13) {
+	  func();
+	}
+  });
+      </script>
+</body>
+</html>
